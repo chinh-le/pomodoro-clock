@@ -1,5 +1,5 @@
 import React from 'react';
 
-const TimerComponent = (props) => {};
+const TimerComponent = (props) => (<div />);
 
 export default TimerComponent;

@@ -1,5 +1,5 @@
 import React from 'react';
 
-const ControlsComponent = (props) => {};
+const ControlsComponent = (props) => (<div />);
 
 export default ControlsComponent;

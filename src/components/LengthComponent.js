@@ -1,5 +1,5 @@
 import React from 'react';
 
-const LengthComponent = (props) => {};
+const LengthComponent = (props) => (<div />);
 
 export default LengthComponent;
