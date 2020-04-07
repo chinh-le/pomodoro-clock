@@ -1,15 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 
-export const clockStatus = {
-  pause: 'pause',
-  playing: 'playing',
-  end: 'end',
-  reset: 'reset',
-  session: 'session',
-  break: 'break',
-};
-
-export const useInterval = (delay) => {
+export default (delay, clockStatus) => {
   const [count, setCount] = useState(10);
   const [status, setStatus] = useState(clockStatus.reset);
 
@@ -17,6 +8,7 @@ export const useInterval = (delay) => {
 
   const pause = useCallback(
     () => {
+      console.log('pause()');
       if (intervalRef.current === null) return;
 
       clearInterval(intervalRef.current);
@@ -27,6 +19,8 @@ export const useInterval = (delay) => {
 
   const play = useCallback(
     (counter) => {
+      console.log('play()');
+
       if (intervalRef.current !== null) return;
 
       setStatus(clockStatus.playing);
@@ -40,7 +34,7 @@ export const useInterval = (delay) => {
         }
       }, delay);
     },
-    [delay, pause],
+    [delay, pause, clockStatus],
   );
 
   return {

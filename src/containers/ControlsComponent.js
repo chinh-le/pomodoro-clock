@@ -1,8 +1,17 @@
 import React, {
   useState, useEffect,
 } from 'react';
-import { clockStatus, useInterval } from '../helpers';
+import useInterval from '../utils/useInterval';
 
+
+const clockStatus = {
+  pause: 'pause',
+  playing: 'playing',
+  end: 'end',
+  reset: 'reset',
+  session: 'session',
+  break: 'break',
+};
 
 const ControlsComponent = (props) => {
   console.log({ ...props });
@@ -10,7 +19,7 @@ const ControlsComponent = (props) => {
   const [isSession, setIsSession] = useState(true);
   const {
     count, status, setStatus, play, pause,
-  } = useInterval(1000);
+  } = useInterval(1000, clockStatus);
 
   useEffect(() => {
     console.log(status);
@@ -20,7 +29,12 @@ const ControlsComponent = (props) => {
       play(isSession ? 5 : 10);
       setIsSession(!isSession);
     }
-  }, [status, isSession, play]);
+
+    // todo: cleanup
+    /* return () => {
+      pause();
+    }; */
+  }, [status, isSession, play, pause]);
 
   const playHandler = () => {
     play(count);
