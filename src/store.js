@@ -1,18 +1,26 @@
 export const SET_BREAK = 'SET_BREAK';
 export const SET_SESSION = 'SET_SESSION';
 export const RESET_CLOCK = 'RESET_CLOCK';
+export const STATUS_CLOCK = {
+  pause: 'pause',
+  playing: 'playing',
+  end: 'end',
+  reset: 'reset',
+  session: 'session',
+  break: 'break',
+};
 
 // init state
 const initState = {
   breakLength: 5,
-  sessionLength: 25,
+  sessionLength: 10,
 };
 
 
 // actions
 export const breakLengthSet = (value) => ({ type: SET_BREAK, value });
 export const sessionLengthSet = (value) => ({ type: SET_SESSION, value });
-export const clockReset = () => ({ type: RESET_CLOCK, initState });
+export const resetClock = () => ({ type: RESET_CLOCK, initState });
 
 
 // reducers

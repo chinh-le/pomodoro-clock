@@ -1,43 +1,73 @@
-import { useState, useRef, useCallback } from 'react';
+import {
+  useState, useEffect, useRef, useCallback,
+} from 'react';
 
-export default (delay, clockStatus) => {
-  const [count, setCount] = useState(10);
-  const [status, setStatus] = useState(clockStatus.reset);
+const INTERVAL_STATUS = {
+  play: 'play',
+  running: 'running',
+  pause: 'pause',
+  looping: 'looping',
+  reset: 'reset',
+};
+
+export default (delay, breakLength, sessionLength) => {
+  const [count, setCount] = useState(sessionLength);
+  const [intervalStatus, setIntervalStatus] = useState(INTERVAL_STATUS.reset);
+  const [isSession, setIsSession] = useState(true);
 
   const intervalRef = useRef(null);
 
   const pause = useCallback(
     () => {
-      console.log('pause()');
+      // console.log('pause()');
       if (intervalRef.current === null) return;
 
       clearInterval(intervalRef.current);
       intervalRef.current = null;
+      setIntervalStatus(INTERVAL_STATUS.pause);
     },
     [],
   );
 
   const play = useCallback(
-    (counter) => {
-      console.log('play()');
+    () => {
+      console.log(`play ${count}`);
 
       if (intervalRef.current !== null) return;
 
-      setStatus(clockStatus.playing);
-      let c = counter;
+      let c = count;
       intervalRef.current = setInterval(() => {
         c -= 1;
         setCount(c);
+        console.log(c);
         if (c === 0) {
           pause();
-          setStatus(clockStatus.end);
+          setCount(isSession ? breakLength : sessionLength);
+          setIsSession(!isSession);
+          setIntervalStatus(INTERVAL_STATUS.looping);
         }
       }, delay);
     },
-    [delay, pause, clockStatus],
+    [delay, sessionLength, breakLength, pause, isSession, count],
   );
 
+  const reset = () => {
+    pause();
+    setCount(sessionLength);
+    setIsSession(true);
+    setIntervalStatus(INTERVAL_STATUS.reset);
+  };
+
+  useEffect(() => {
+    console.log('useEffect', intervalStatus);
+
+    if (intervalStatus !== INTERVAL_STATUS.reset
+      && intervalStatus !== INTERVAL_STATUS.pause) {
+      play();
+    }
+  }, [intervalStatus]);
+
   return {
-    count, status, setStatus, play, pause,
+    count, intervalStatus, setIntervalStatus, INTERVAL_STATUS, play, pause, reset,
   };
 };

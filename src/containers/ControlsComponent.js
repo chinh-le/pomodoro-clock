@@ -1,48 +1,40 @@
 import React, {
   useState, useEffect,
 } from 'react';
+import { connect } from 'react-redux';
 import useInterval from '../utils/useInterval';
+import { resetClock } from '../store';
 
 
-const clockStatus = {
+/* const clockStatus = {
   pause: 'pause',
   playing: 'playing',
   end: 'end',
   reset: 'reset',
   session: 'session',
   break: 'break',
-};
+}; */
+
 
 const ControlsComponent = (props) => {
-  console.log({ ...props });
+  // console.log({ ...props });
+  const { breakLength, sessionLength, resetClockHandler } = { ...props };
 
-  const [isSession, setIsSession] = useState(true);
   const {
-    count, status, setStatus, play, pause,
-  } = useInterval(1000, clockStatus);
-
-  useEffect(() => {
-    console.log(status);
-
-    // loop session/break
-    if (status === clockStatus.end) {
-      play(isSession ? 5 : 10);
-      setIsSession(!isSession);
-    }
-
-    // todo: cleanup
-    /* return () => {
-      pause();
-    }; */
-  }, [status, isSession, play, pause]);
+    count, play, pause, reset,
+  } = useInterval(1000, breakLength, sessionLength);
 
   const playHandler = () => {
-    play(count);
+    play(); // interval
   };
 
   const pauseHandler = () => {
-    pause();
-    setStatus(clockStatus.pause);
+    pause(); // interval
+  };
+
+  const resetHandler = () => {
+    resetClockHandler(); // store
+    reset(); // interval
   };
 
   return (
@@ -50,9 +42,16 @@ const ControlsComponent = (props) => {
       <p>{`count: ${count}`}</p>
       <button type="button" onClick={playHandler}>play</button>
       <button type="button" onClick={pauseHandler}>pause</button>
+      <button type="button" onClick={resetHandler}>reset</button>
     </div>
   );
 };
 
+const mapStateToProps = (state) => (state);
 
-export default ControlsComponent;
+const mapDispatchToProps = (dispatch) => ({
+  resetClockHandler: () => dispatch(resetClock()),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ControlsComponent);
