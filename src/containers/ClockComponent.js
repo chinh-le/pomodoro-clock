@@ -1,35 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-// import { connect } from 'react-redux';
-// import { breakLengthSet, sessionLengthSet, clockReset } from '../store';
+import { connect } from 'react-redux';
+import useInterval from '../utils/useInterval';
 
 import ControlsComponent from './ControlsComponent';
-// import LengthsComponent from './LengthsComponent';
-// import LengthComponent from '../components/LengthComponent';
+import SessionComponent from './SessionComponent';
+import BreakComponent from './BreakComponent';
 import TimeComponent from '../components/TimeComponent';
 import './ClockComponent.scss';
 
 
-const ClockComponent = (props) =>
-// console.log({ ...props });
-  (
+const ClockComponent = (props) => {
+  // console.log({ ...props });
+  const { breakLength, sessionLength } = { ...props };
+  const {
+    count, play, pause, reset,
+  } = useInterval(1000, sessionLength, breakLength);
+
+
+  return (
     <Container className="clock-container mx-auto" style={{ minWidth: '270px' }}>
       <h1>Pomodoro Clock</h1>
-      {/* <input type="number" onChange={breakHandler} value={breakLength} /> */}
-      {/* <input type="number" onChange={sessionHandler} value={sessionLength} /> */}
-      {/* <button type="button" onClick={resetHandler}>Reset</button> */}
-      {/* <button type="button" onClick={togglePlay}>{isPlaying ? 'pause' : 'play'}</button> */}
       <Row>
-        <TimeComponent />
+        <TimeComponent count={count} />
       </Row>
       <Row>
-        {/* <LengthComponent /> */}
-        {/* <LengthsComponent /> */}
-        <ControlsComponent />
-        {/* <LengthComponent /> */}
+        <BreakComponent reset={reset} />
+        <SessionComponent reset={reset} />
+        <ControlsComponent play={play} pause={pause} reset={reset} />
       </Row>
     </Container>
 
   );
-export default ClockComponent;
-// export default connect(mapStateToProps, mapDispatchToProps)(ClockComponent);
+};
+
+const mapStateToProps = (state) => (state);
+
+export default connect(mapStateToProps)(ClockComponent);
