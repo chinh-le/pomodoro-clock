@@ -6,10 +6,10 @@ import { setSessionLength } from '../store';
 
 const SessionComponent = (props) => {
   // console.log({ ...props });
-  const { min, max, step } = { min: 1, max: 1440, step: 1 };
   const {
     sessionLength, sessionLengthHandler, reset,
   } = { ...props };
+  const { min, max, step } = { min: 1, max: 1440, step: 1 };
   const [mins, setMins] = useState('');
   const [inputError, setInputError] = useState('invisible');
 
@@ -38,7 +38,7 @@ const SessionComponent = (props) => {
       <InputGroup>
         <Form.Control type="number" onChange={sessionHandler} value={mins} min={min} max={max} step={step} style={{ backgroundColor:'#8697a9' }} className="border-secondary" />
         <InputGroup.Append>
-          <InputGroup.Text style={{ backgroundColor:'#8697a9' }} className="border-secondary text-dark" style={{backgroundColor:'#daa520'}}>Session</InputGroup.Text>
+          <InputGroup.Text style={{ backgroundColor:'#daa520' }} className="border-secondary text-dark">Session</InputGroup.Text>
         </InputGroup.Append>
       </InputGroup>
     </div>

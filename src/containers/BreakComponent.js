@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { InputGroup, Form, Row } from 'react-bootstrap';
+import { InputGroup, Form } from 'react-bootstrap';
 
 import { setBreakLength } from '../store';
 
