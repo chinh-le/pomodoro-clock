@@ -26,7 +26,7 @@ const TimeComponent = (props) => {
 
   // goldenrod: #daa520
   return (
-    <h1 className="text-center m-0 time-display" style={{ fontSize: '5rem', padding: '3rem 0', color: 'goldenrod' }}>{`${hrs}:${mins}:${secs}`}</h1>
+    <h1 className="text-center m-0 time-display" style={{ fontSize: '4rem', padding: '3rem 0', color: 'goldenrod' }}>{`${hrs} : ${mins} : ${secs}`}</h1>
   );
 };
 

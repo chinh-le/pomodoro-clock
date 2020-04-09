@@ -21,7 +21,7 @@ const ClockComponent = (props) => {
   //slategray: #708090
 
   return (
-    <Container className="clock-container" style={{ minWidth: '450px' }}>
+    <Container className="clock-container" style={{ minWidth: '575px' }}>
       <Col xs={9} md={7} lg={6} xl={5} className="mx-auto my-4 rounded-lg border border-secondary" style={{ padding: '2rem 4rem',backgroundColor:'#708090' }}>
         <Row className="justify-content-center" style={{ margin: '0 3rem' }}>
           <BreakComponent reset={reset} />
