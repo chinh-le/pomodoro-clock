@@ -11,15 +11,15 @@ const SessionComponent = (props) => {
     sessionLength, sessionLengthHandler, reset,
   } = { ...props };
   const [mins, setMins] = useState('');
-  const [inputError, setInputError] = useState('d-none');
+  const [inputError, setInputError] = useState('invisible');
 
   const sessionHandler = (evt) => {
     if (evt.target.validity.valid) {
       sessionLengthHandler(evt.target.value * 60);
       reset(true);
-      setInputError('d-none');
+      setInputError('invisible');
     } else {
-      setInputError('d-block');
+      setInputError('visible');
     }
   };
 
@@ -31,14 +31,17 @@ const SessionComponent = (props) => {
     };
   }, [sessionLength]);
 
+  //goldenrod: #daa520
   return (
-    <InputGroup>
-      <Form.Control type="number" onChange={sessionHandler} value={mins} min={min} max={max} step={step} />
-      <InputGroup.Append>
-        <InputGroup.Text id="session">Session</InputGroup.Text>
-      </InputGroup.Append>
-      <InputGroup.Text className={`${inputError}`}>1 - 1440 mins (24h)</InputGroup.Text>
-    </InputGroup>
+    <div style={{ width: '51%' }} className="mx-1">
+      <div className={`${inputError} text-danger mt-1 ml-2 text-left`} style={{ fontSize: '0.8rem' }}>1 - 1440 mins (24h)</div>
+      <InputGroup>
+        <Form.Control type="number" onChange={sessionHandler} value={mins} min={min} max={max} step={step} style={{ backgroundColor:'#8697a9' }} className="border-secondary" />
+        <InputGroup.Append>
+          <InputGroup.Text style={{ backgroundColor:'#8697a9' }} className="border-secondary text-dark" style={{backgroundColor:'#daa520'}}>Session</InputGroup.Text>
+        </InputGroup.Append>
+      </InputGroup>
+    </div>
   );
 };
 

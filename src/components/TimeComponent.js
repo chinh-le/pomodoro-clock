@@ -23,8 +23,10 @@ const TimeComponent = (props) => {
       // cleanup
     };
   }, [count]);
+
+  // goldenrod: #daa520
   return (
-    <div className="rounded-lg border p-4 w-100" style={{ fontSize: '4rem' }}>{`${hrs}:${mins}:${secs}`}</div>
+    <h1 className="text-center m-0" style={{ fontSize: '5rem', padding: '3rem 0', color: 'goldenrod' }}>{`${hrs} : ${mins} : ${secs}`}</h1>
   );
 };
 

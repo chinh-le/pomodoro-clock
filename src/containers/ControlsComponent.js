@@ -27,15 +27,15 @@ const ControlsComponent = (props) => {
   };
 
   return (
-    <ButtonGroup size="lg">
-      <Button onClick={pauseHandler} variant="outline-secondary">
+    <ButtonGroup size="sm" className="d-flex justify-content-center mb-2">
+      <Button onClick={pauseHandler} variant="link">
         <Pause color="action" aria-label="pause" />
       </Button>
-      <Button onClick={playHandler} variant="outline-dark">
-        <PlayArrow color="secondary" aria-label="play" />
+      <Button onClick={playHandler} variant="link">
+        <PlayArrow color="action" aria-label="play" />
       </Button>
-      <Button onClick={resetHandler} variant="outline-light">
-        <Autorenew color="disabled" aria-label="reset" />
+      <Button onClick={resetHandler} variant="link">
+        <Autorenew color="action" aria-label="reset" />
       </Button>
     </ButtonGroup>
   );

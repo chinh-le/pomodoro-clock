@@ -17,19 +17,18 @@ const ClockComponent = (props) => {
     count, play, pause, reset,
   } = useInterval(1000, sessionLength, breakLength);
 
+  //lightslategray: #778899
+  //slategray: #708090
 
   return (
-    <Container className="clock-container">
-      <Col xs={8} className="mx-auto my-4 text-center">
-        <h3>Pomodoro Clock</h3>
-        <Row>
-          <TimeComponent count={count} />
-        </Row>
-        <Row>
+    <Container className="clock-container" style={{ minWidth: '450px' }}>
+      <Col xs={9} md={7} lg={6} xl={5} className="mx-auto my-4 rounded-lg border border-secondary" style={{ padding: '2rem 4rem',backgroundColor:'#708090' }}>
+        <Row className="justify-content-center" style={{ margin: '0 3rem' }}>
           <BreakComponent reset={reset} />
           <SessionComponent reset={reset} />
-          <ControlsComponent play={play} pause={pause} reset={reset} />
         </Row>
+        <TimeComponent count={count} />
+        <ControlsComponent play={play} pause={pause} reset={reset} />
       </Col>
     </Container>
 
