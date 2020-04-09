@@ -1,6 +1,8 @@
 import {
   useState, useEffect, useRef, useCallback,
 } from 'react';
+import UIfx from 'uifx';
+import soundfx from '../assets/reso_cowbell_single_shot_waw.mp3';
 
 const INTERVAL_STATUS = {
   pause: 'pause',
@@ -14,6 +16,8 @@ export default (delay, sessionLength, breakLength) => {
   const [isSession, setIsSession] = useState(true);
 
   const intervalRef = useRef(null);
+
+  const newSoundFx = new UIfx(soundfx);
 
   const pause = useCallback(
     () => {
@@ -36,9 +40,10 @@ export default (delay, sessionLength, breakLength) => {
       intervalRef.current = setInterval(() => {
         c -= 1;
         setCount(c);
-        console.log(c);
+        // console.log(c);
         if (c === 0) {
           pause();
+          newSoundFx.play();
           setCount(isSession ? breakLength : sessionLength);
           setIsSession(!isSession);
           setIntervalStatus(INTERVAL_STATUS.looping);

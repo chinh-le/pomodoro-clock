@@ -4,7 +4,7 @@ import { setSessionLength } from '../store';
 
 const SessionComponent = (props) => {
   // console.log({ ...props });
-  const { min, max, step } = { min: 1, max: 1440, step: 5 };
+  const { min, max, step } = { min: 1, max: 1440, step: 1 };
   const {
     sessionLength, sessionLengthHandler, reset,
   } = { ...props };
@@ -33,7 +33,7 @@ const SessionComponent = (props) => {
     <div>
       <p>{`session: ${mins}`}</p>
       <input type="number" onChange={sessionHandler} value={mins} min={min} max={max} step={step} />
-      <span className={inputError}>by 5 / min 1 /max 1440 minutes (24 hours)</span>
+      <span className={inputError}>by 5 / max 1440 minutes (24 hours)</span>
     </div>
   );
 };
