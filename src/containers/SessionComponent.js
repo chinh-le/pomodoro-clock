@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { InputGroup, Form } from 'react-bootstrap';
+
 import { setSessionLength } from '../store';
 
 const SessionComponent = (props) => {
@@ -30,11 +32,13 @@ const SessionComponent = (props) => {
   }, [sessionLength]);
 
   return (
-    <div>
-      <p>{`session: ${mins}`}</p>
-      <input type="number" onChange={sessionHandler} value={mins} min={min} max={max} step={step} />
-      <span className={inputError}>1 - 1440 mins (24h)</span>
-    </div>
+    <InputGroup>
+      <Form.Control type="number" onChange={sessionHandler} value={mins} min={min} max={max} step={step} />
+      <InputGroup.Append>
+        <InputGroup.Text id="session">Session</InputGroup.Text>
+      </InputGroup.Append>
+      <InputGroup.Text className={`${inputError}`}>1 - 1440 mins (24h)</InputGroup.Text>
+    </InputGroup>
   );
 };
 

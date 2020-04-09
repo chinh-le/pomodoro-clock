@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { InputGroup, Form } from 'react-bootstrap';
+
 import { setBreakLength } from '../store';
 
 const BreakComponent = (props) => {
@@ -31,11 +33,13 @@ const BreakComponent = (props) => {
   }, [breakLength]);
 
   return (
-    <div>
-      <p>{`break: ${mins}`}</p>
-      <input type="number" onChange={breakHandler} value={mins} min={min} max={max} step={step} />
-      <span className={inputError}>1 - 60 mins</span>
-    </div>
+    <InputGroup>
+      <InputGroup.Prepend>
+        <InputGroup.Text id="break">Break</InputGroup.Text>
+      </InputGroup.Prepend>
+      <Form.Control type="number" onChange={breakHandler} value={mins} min={min} max={max} step={step} />
+      <InputGroup.Text className={`${inputError}`}>1 - 60 mins</InputGroup.Text>
+    </InputGroup>
   );
 };
 
