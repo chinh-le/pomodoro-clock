@@ -24,13 +24,7 @@ const TimeComponent = (props) => {
     };
   }, [count]);
   return (
-    <div>
-      <span>{hrs}</span>
-      :
-      <span>{mins}</span>
-      :
-      <span>{secs}</span>
-    </div>
+    <div className="rounded-lg border p-4 w-100" style={{ fontSize: '4rem' }}>{`${hrs}:${mins}:${secs}`}</div>
   );
 };
 

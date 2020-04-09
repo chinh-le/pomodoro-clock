@@ -34,7 +34,7 @@ const BreakComponent = (props) => {
     <div>
       <p>{`break: ${mins}`}</p>
       <input type="number" onChange={breakHandler} value={mins} min={min} max={max} step={step} />
-      <span className={inputError}>min 1 / max 60 minutes</span>
+      <span className={inputError}>1 - 60 mins</span>
     </div>
   );
 };

@@ -50,7 +50,7 @@ export default (delay, sessionLength, breakLength) => {
         }
       }, delay);
     },
-    [delay, sessionLength, breakLength, pause, isSession, count],
+    [delay, sessionLength, breakLength, pause, isSession, count, newSoundFx],
   );
 
   const reset = (status) => {

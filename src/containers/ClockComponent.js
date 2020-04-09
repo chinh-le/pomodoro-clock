@@ -21,7 +21,7 @@ const ClockComponent = (props) => {
   return (
     <Container className="clock-container">
       <Col xs={8} className="mx-auto my-4 text-center">
-        <h1>Pomodoro Clock</h1>
+        <h3>Pomodoro Clock</h3>
         <Row>
           <TimeComponent count={count} />
         </Row>

@@ -33,7 +33,7 @@ const SessionComponent = (props) => {
     <div>
       <p>{`session: ${mins}`}</p>
       <input type="number" onChange={sessionHandler} value={mins} min={min} max={max} step={step} />
-      <span className={inputError}>by 5 / max 1440 minutes (24 hours)</span>
+      <span className={inputError}>1 - 1440 mins (24h)</span>
     </div>
   );
 };
