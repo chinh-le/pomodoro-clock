@@ -36,7 +36,7 @@ export default (delay, sessionLength, breakLength) => {
       intervalRef.current = setInterval(() => {
         c -= 1;
         setCount(c);
-        // console.log(c);
+        console.log(c);
         if (c === 0) {
           pause();
           setCount(isSession ? breakLength : sessionLength);

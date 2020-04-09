@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import useInterval from '../utils/useInterval';
 
@@ -19,16 +19,18 @@ const ClockComponent = (props) => {
 
 
   return (
-    <Container className="clock-container mx-auto" style={{ minWidth: '270px' }}>
-      <h1>Pomodoro Clock</h1>
-      <Row>
-        <TimeComponent count={count} />
-      </Row>
-      <Row>
-        <BreakComponent reset={reset} />
-        <SessionComponent reset={reset} />
-        <ControlsComponent play={play} pause={pause} reset={reset} />
-      </Row>
+    <Container className="clock-container">
+      <Col xs={8} className="mx-auto my-4 text-center">
+        <h1>Pomodoro Clock</h1>
+        <Row>
+          <TimeComponent count={count} />
+        </Row>
+        <Row>
+          <BreakComponent reset={reset} />
+          <SessionComponent reset={reset} />
+          <ControlsComponent play={play} pause={pause} reset={reset} />
+        </Row>
+      </Col>
     </Container>
 
   );
