@@ -10,14 +10,14 @@ const INTERVAL_STATUS = {
   reset: 'reset',
 };
 
+const newSoundFx = new UIfx(soundfx);
+
+
 export default (delay, sessionLength, breakLength) => {
   const [count, setCount] = useState(sessionLength);
   const [intervalStatus, setIntervalStatus] = useState(INTERVAL_STATUS.reset);
   const [isSession, setIsSession] = useState(true);
-
   const intervalRef = useRef(null);
-
-  const newSoundFx = new UIfx(soundfx);
 
   const pause = useCallback(
     () => {
