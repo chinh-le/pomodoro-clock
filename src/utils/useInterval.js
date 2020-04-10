@@ -1,23 +1,28 @@
 import {
   useState, useEffect, useRef, useCallback,
 } from 'react';
+import UIfx from 'uifx';
+import soundfx from '../assets/reso_cowbell_single_shot_waw.mp3';
 
 const INTERVAL_STATUS = {
+  play: 'play',
   pause: 'pause',
   looping: 'looping',
   reset: 'reset',
+  change: 'change',
 };
+
+const newSoundFx = new UIfx(soundfx);
+
 
 export default (delay, sessionLength, breakLength) => {
   const [count, setCount] = useState(sessionLength);
   const [intervalStatus, setIntervalStatus] = useState(INTERVAL_STATUS.reset);
   const [isSession, setIsSession] = useState(true);
-
   const intervalRef = useRef(null);
 
   const pause = useCallback(
     () => {
-      // console.log('pause()');
       if (intervalRef.current === null) return;
 
       clearInterval(intervalRef.current);
@@ -29,16 +34,17 @@ export default (delay, sessionLength, breakLength) => {
 
   const play = useCallback(
     () => {
-      // console.log(`play ${count}`);
       if (intervalRef.current !== null) return;
 
+      setIntervalStatus(INTERVAL_STATUS.play);
       let c = count;
       intervalRef.current = setInterval(() => {
         c -= 1;
         setCount(c);
-        // console.log(c);
+
         if (c === 0) {
           pause();
+          newSoundFx.play();
           setCount(isSession ? breakLength : sessionLength);
           setIsSession(!isSession);
           setIntervalStatus(INTERVAL_STATUS.looping);
@@ -48,24 +54,28 @@ export default (delay, sessionLength, breakLength) => {
     [delay, sessionLength, breakLength, pause, isSession, count],
   );
 
-  const reset = (status) => {
-    // console.log('reset()');
+  const change = () => {
     pause();
     setIsSession(true);
-    if (status) setIntervalStatus(INTERVAL_STATUS.reset);
+    setIntervalStatus(INTERVAL_STATUS.change);
+  };
+
+  const reset = () => {
+    pause();
+    setIsSession(true);
+    setIntervalStatus(INTERVAL_STATUS.reset);
   };
 
   useEffect(() => {
-    // console.log('useEffect', intervalStatus);
-    if (intervalStatus === INTERVAL_STATUS.reset) setCount(sessionLength);
-
-    if (intervalStatus !== INTERVAL_STATUS.reset
-      && intervalStatus !== INTERVAL_STATUS.pause) {
-      play();
+    if (intervalStatus === INTERVAL_STATUS.reset
+      || intervalStatus === INTERVAL_STATUS.change) {
+      setCount(sessionLength);
+    } else if (intervalStatus === INTERVAL_STATUS.looping) {
+      play(); // looping
     }
   }, [intervalStatus, sessionLength]);
 
   return {
-    count, intervalStatus, setIntervalStatus, INTERVAL_STATUS, play, pause, reset,
+    count, play, pause, reset, isSession, change,
   };
 };
