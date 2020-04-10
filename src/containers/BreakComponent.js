@@ -9,7 +9,7 @@ const BreakComponent = (props) => {
   // console.log({ ...props });
   const { min, max, step } = { min: 1, max: 60, step: 1 };
   const {
-    breakLength, breakLengthHandler, reset, isSession,
+    breakLength, breakLengthHandler, change, isSession,
   } = { ...props };
   const [mins, setMins] = useState('');
   const [inputError, setInputError] = useState('invisible');
@@ -19,7 +19,7 @@ const BreakComponent = (props) => {
     evt.persist();
     if (evt.target.validity.valid) {
       breakLengthHandler(evt.target.value * 60);
-      reset();
+      change();
       setInputError('invisible');
     } else {
       setInputError('visible');

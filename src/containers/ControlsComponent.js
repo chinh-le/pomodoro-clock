@@ -25,7 +25,7 @@ const ControlsComponent = (props) => {
 
   const resetHandler = () => {
     resetClockHandler(); // store
-    reset(true); // interval
+    reset(); // interval
   };
 
   const mouseHandler = (evt) => {

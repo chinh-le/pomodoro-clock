@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { InputGroup, Form } from 'react-bootstrap';
 import { setSessionLength } from '../store';
-import theme from '../theme'
+import theme from '../theme';
 
 const SessionComponent = (props) => {
   // console.log({ ...props });
   const {
-    sessionLength, sessionLengthHandler, reset, isSession,
+    sessionLength, sessionLengthHandler, change, isSession,
   } = { ...props };
   const { min, max, step } = { min: 1, max: 1440, step: 1 };
   const [mins, setMins] = useState('');
@@ -17,7 +17,7 @@ const SessionComponent = (props) => {
   const sessionHandler = (evt) => {
     if (evt.target.validity.valid) {
       sessionLengthHandler(evt.target.value * 60);
-      reset(true);
+      change();
       setInputError('invisible');
     } else {
       setInputError('visible');
