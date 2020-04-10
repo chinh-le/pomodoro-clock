@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import theme from '../theme';
 
 const TimeComponent = (props) => {
-  const { count } = { ...props };
+  const { count, isSession } = { ...props };
   const [hrs, setHrs] = useState('00');
   const [mins, setMins] = useState('00');
   const [secs, setSecs] = useState('00');
+  const [color, setColor] = useState(theme.timeColor.session);
 
   useEffect(() => {
+    setColor(isSession ? theme.timeColor.session : theme.timeColor.break);
+
     let hrsTxt = Math.floor(count / 3600);
     if (hrsTxt > 0) {
       hrsTxt = hrsTxt < 10 ? '0'.concat(hrsTxt) : hrsTxt;
+    } else {
+      hrsTxt = '0'.concat(hrsTxt);
     }
     setHrs(hrsTxt);
 
@@ -22,11 +28,16 @@ const TimeComponent = (props) => {
     return () => {
       // cleanup
     };
-  }, [count]);
+  }, [count, isSession]);
 
-  // goldenrod: #daa520
   return (
-    <h1 className="text-center m-0 time-display" style={{ fontSize: '4rem', padding: '3rem 0', color: 'goldenrod' }}>{`${hrs} : ${mins} : ${secs}`}</h1>
+    <h1 className="text-center m-0 time-display pt-1 pb-4" style={{ fontSize: '5rem', color: `${color}` }}>
+      <span className="d-inline-flex justify-content-center" style={{ width: '90px', display: 'inline-flex' }}>{hrs}</span>
+      :
+      <span className="d-inline-flex justify-content-center" style={{ width: '90px', display: 'inline-flex' }}>{mins}</span>
+      :
+      <span className="d-inline-flex justify-content-center" style={{ width: '90px', display: 'inline-flex' }}>{secs}</span>
+    </h1>
   );
 };
 

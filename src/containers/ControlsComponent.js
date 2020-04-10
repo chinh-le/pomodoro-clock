@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { ButtonGroup, Button } from 'react-bootstrap';
 import { PlayArrow, Pause, Autorenew } from '@material-ui/icons';
-
-
 import { resetClock } from '../store';
+import theme from '../theme';
 
 
 const ControlsComponent = (props) => {
@@ -12,9 +11,9 @@ const ControlsComponent = (props) => {
   const {
     resetClockHandler, play, pause, reset,
   } = { ...props };
-  const [pauseColor, setPauseColor] = useState('disabled');
-  const [playColor, setPlayColor] = useState('disabled');
-  const [resetColor, setResetColor] = useState('disabled');
+  const [pauseColor, setPauseColor] = useState(theme.controls.off);
+  const [playColor, setPlayColor] = useState(theme.controls.off);
+  const [resetColor, setResetColor] = useState(theme.controls.off);
 
   const playHandler = () => {
     play(); // interval
@@ -31,7 +30,7 @@ const ControlsComponent = (props) => {
 
   const mouseHandler = (evt) => {
     evt.persist();
-    const color = evt.type === 'mouseenter' ? 'action' : 'disabled';
+    const color = evt.type === 'mouseenter' ? theme.controls.on : theme.controls.off;
 
     if (/btn-pause/.test(evt.target.className)) setPauseColor(color);
     else if (/btn-play/.test(evt.target.className)) setPlayColor(color);

@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { InputGroup, Form } from 'react-bootstrap';
-
 import { setSessionLength } from '../store';
+import theme from '../theme'
 
 const SessionComponent = (props) => {
   // console.log({ ...props });
   const {
-    sessionLength, sessionLengthHandler, reset,
+    sessionLength, sessionLengthHandler, reset, isSession,
   } = { ...props };
   const { min, max, step } = { min: 1, max: 1440, step: 1 };
   const [mins, setMins] = useState('');
   const [inputError, setInputError] = useState('invisible');
+  const [bgColor, setBgColor] = useState(theme.session.labelBg.on);
 
   const sessionHandler = (evt) => {
     if (evt.target.validity.valid) {
@@ -24,23 +25,23 @@ const SessionComponent = (props) => {
   };
 
   useEffect(() => {
-    // effect
+    // console.log('isSession', isSession);
+    setBgColor(isSession ? theme.session.labelBg.on : theme.session.labelBg.off);
     setMins(Math.floor(sessionLength / 60));
     return () => {
       // cleanup
     };
-  }, [sessionLength]);
+  }, [sessionLength, isSession]);
 
-  //goldenrod: #daa520
   return (
     <div style={{ width: '51%' }} className="mx-1">
-      <div className={`${inputError} text-danger mt-1 ml-2 text-left`} style={{ fontSize: '0.8rem' }}>1 - 1440 mins (24h)</div>
       <InputGroup>
-        <Form.Control type="number" onChange={sessionHandler} value={mins} min={min} max={max} step={step} style={{ backgroundColor:'#8697a9' }} className="border-secondary" />
+        <Form.Control type="number" onChange={sessionHandler} value={mins} min={min} max={max} step={step} style={{ backgroundColor: theme.session.inputBg }} className="border-secondary" />
         <InputGroup.Append>
-          <InputGroup.Text style={{ backgroundColor:'#daa520' }} className="border-secondary text-dark">Session</InputGroup.Text>
+          <InputGroup.Text style={{ backgroundColor: `${bgColor}` }} className="border-secondary text-dark">Session</InputGroup.Text>
         </InputGroup.Append>
       </InputGroup>
+      <div className={`${inputError} text-danger mt-1 ml-2 text-left`}>1 - 1440 mins (24h)</div>
     </div>
   );
 };
