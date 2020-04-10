@@ -34,7 +34,7 @@ const SessionComponent = (props) => {
   }, [sessionLength, isSession]);
 
   return (
-    <div style={{ width: '51%' }} className="mx-1">
+    <div style={{ width: '41%' }} className="mx-1">
       <InputGroup>
         <Form.Control type="number" onChange={sessionHandler} value={mins} min={min} max={max} step={step} style={{ backgroundColor: theme.session.inputBg }} className="border-secondary" />
         <InputGroup.Append>

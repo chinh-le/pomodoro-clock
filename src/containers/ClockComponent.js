@@ -18,13 +18,10 @@ const ClockComponent = (props) => {
     count, play, pause, reset, isSession,
   } = useInterval(1000, sessionLength, breakLength);
 
-  // lightslategray: #778899
-  // slategray: #708090
-
   return (
-    <Container className="clock-container" style={{ width: '500px' }}>
-      <Col xs={9} md={7} lg={6} xl={5} className="mx-auto my-4 rounded-lg border border-secondary pt-4 pb-3 px-2" style={{ backgroundColor: theme.componentBg }}>
-        <Row className="justify-content-center" style={{ margin: '0 3rem' }}>
+    <Container className="clock-container" style={{ width: '350px' }}>
+      <Col className="my-4 pt-4 pb-2 rounded-lg border border-secondary" style={{ backgroundColor: theme.componentBg }}>
+        <Row className="justify-content-center">
           <BreakComponent reset={reset} isSession={isSession} />
           <SessionComponent reset={reset} isSession={isSession} />
         </Row>
