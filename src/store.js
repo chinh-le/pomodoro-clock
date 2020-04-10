@@ -6,7 +6,7 @@ export const RESET_CLOCK = 'RESET_CLOCK';
 // init state
 const initState = {
   breakLength: 300, // 5*60
-  sessionLength: 3900, // 65*60
+  sessionLength: 1500, // 25*60
 };
 
 
