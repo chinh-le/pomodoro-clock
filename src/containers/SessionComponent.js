@@ -5,7 +5,6 @@ import { setSessionLength } from '../store';
 import theme from '../theme';
 
 const SessionComponent = (props) => {
-  // console.log({ ...props });
   const {
     sessionLength, sessionLengthHandler, change, isSession,
   } = { ...props };
@@ -25,7 +24,6 @@ const SessionComponent = (props) => {
   };
 
   useEffect(() => {
-    // console.log('isSession', isSession);
     setBgColor(isSession ? theme.session.labelBg.on : theme.session.labelBg.off);
     setMins(Math.floor(sessionLength / 60));
     return () => {

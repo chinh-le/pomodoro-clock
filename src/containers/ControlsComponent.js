@@ -7,7 +7,6 @@ import theme from '../theme';
 
 
 const ControlsComponent = (props) => {
-  // console.log({ ...props });
   const {
     resetClockHandler, play, pause, reset,
   } = { ...props };

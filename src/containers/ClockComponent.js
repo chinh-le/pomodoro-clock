@@ -12,7 +12,6 @@ import './ClockComponent.scss';
 
 
 const ClockComponent = (props) => {
-  // console.log({ ...props });
   const { breakLength, sessionLength } = { ...props };
   const {
     count, play, pause, reset, isSession, change,

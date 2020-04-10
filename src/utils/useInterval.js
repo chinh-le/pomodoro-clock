@@ -16,7 +16,6 @@ const newSoundFx = new UIfx(soundfx);
 
 
 export default (delay, sessionLength, breakLength) => {
-  // console.log('useInterval');
   const [count, setCount] = useState(sessionLength);
   const [intervalStatus, setIntervalStatus] = useState(INTERVAL_STATUS.reset);
   const [isSession, setIsSession] = useState(true);
@@ -24,7 +23,6 @@ export default (delay, sessionLength, breakLength) => {
 
   const pause = useCallback(
     () => {
-      // console.log('pause()');
       if (intervalRef.current === null) return;
 
       clearInterval(intervalRef.current);
@@ -36,14 +34,14 @@ export default (delay, sessionLength, breakLength) => {
 
   const play = useCallback(
     () => {
-      // console.log(`play ${count}`);
       if (intervalRef.current !== null) return;
+
       setIntervalStatus(INTERVAL_STATUS.play);
       let c = count;
       intervalRef.current = setInterval(() => {
         c -= 1;
         setCount(c);
-        // console.log(c);
+
         if (c === 0) {
           pause();
           newSoundFx.play();
@@ -69,7 +67,6 @@ export default (delay, sessionLength, breakLength) => {
   };
 
   useEffect(() => {
-    // console.log('useEffect', intervalStatus);
     if (intervalStatus === INTERVAL_STATUS.reset
       || intervalStatus === INTERVAL_STATUS.change) {
       setCount(sessionLength);

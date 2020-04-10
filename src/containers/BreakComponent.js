@@ -6,7 +6,6 @@ import { setBreakLength } from '../store';
 import theme from '../theme';
 
 const BreakComponent = (props) => {
-  // console.log({ ...props });
   const { min, max, step } = { min: 1, max: 60, step: 1 };
   const {
     breakLength, breakLengthHandler, change, isSession,
