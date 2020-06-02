@@ -38,13 +38,13 @@ const ControlsComponent = (props) => {
 
   return (
     <ButtonGroup size="sm" className="d-flex justify-content-center mb-2">
-      <Button onClick={pauseHandler} variant="link" onMouseEnter={mouseHandler} onMouseLeave={mouseHandler} className="btn-pause">
+      <Button onClick={pauseHandler} variant="link" onMouseEnter={mouseHandler} onMouseLeave={mouseHandler} className="btn-pause" id="stop">
         <Pause color={pauseColor} aria-label="pause" />
       </Button>
-      <Button onClick={playHandler} variant="link" onMouseEnter={mouseHandler} onMouseLeave={mouseHandler} className="btn-play">
+      <Button onClick={playHandler} variant="link" onMouseEnter={mouseHandler} onMouseLeave={mouseHandler} className="btn-play" id="start">
         <PlayArrow color={playColor} aria-label="play" />
       </Button>
-      <Button onClick={resetHandler} variant="link" onMouseEnter={mouseHandler} onMouseLeave={mouseHandler} className="btn-reset">
+      <Button onClick={resetHandler} variant="link" onMouseEnter={mouseHandler} onMouseLeave={mouseHandler} className="btn-reset" id="reset">
         <Autorenew color={resetColor} aria-label="reset" />
       </Button>
     </ButtonGroup>

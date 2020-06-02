@@ -31,7 +31,7 @@ const TimeComponent = (props) => {
   }, [count, isSession]);
 
   return (
-    <h1 className="text-center m-0 time-display pt-1 pb-4" style={{ fontSize: '4rem', color: `${color}` }}>
+    <h1 className="text-center m-0 time-display pt-1 pb-4" style={{ fontSize: '3rem', color: `${color}` }} id="time-left">
       <span className="d-inline-flex justify-content-center" style={{ width: '30%', display: 'inline-flex' }}>{hrs}</span>
       :
       <span className="d-inline-flex justify-content-center" style={{ width: '30%', display: 'inline-flex' }}>{mins}</span>
