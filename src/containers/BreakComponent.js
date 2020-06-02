@@ -34,14 +34,14 @@ const BreakComponent = (props) => {
   }, [breakLength, isSession]);
 
   return (
-    <div style={{ width: '33%' }} className="mx-1">
+    <div style={{ width: '37%' }} className="mx-1">
       <InputGroup>
         <InputGroup.Prepend>
-          <InputGroup.Text className="border-secondary text-dark" style={{ backgroundColor: `${bgColor}` }}>Break</InputGroup.Text>
+          <InputGroup.Text className="border-secondary text-dark" style={{ backgroundColor: `${bgColor}`, fontSize: '0.8rem' }} id="break-label">Break</InputGroup.Text>
         </InputGroup.Prepend>
-        <Form.Control type="number" onChange={breakHandler} value={mins} min={min} max={max} step={step} style={{ backgroundColor: theme.break.inputBg }} className="border-secondary" />
+        <Form.Control type="number" onChange={breakHandler} value={mins} min={min} max={max} step={step} style={{ backgroundColor: theme.break.inputBg, fontSize: '0.8rem' }} className="border-secondary" id="break-deincrement-length" />
       </InputGroup>
-      <div className={`${inputError} text-danger mt-1 mr-2 text-right`}>1 - 60 mins</div>
+      <div className={`${inputError} text-dark mt-1 mr-2 text-right`} style={{ fontSize: '0.8rem' }}>1 - 60 mins</div>
     </div>
   );
 };

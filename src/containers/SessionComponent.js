@@ -32,14 +32,14 @@ const SessionComponent = (props) => {
   }, [sessionLength, isSession]);
 
   return (
-    <div style={{ width: '41%' }} className="mx-1">
+    <div style={{ width: '43%' }} className="mx-1">
       <InputGroup>
-        <Form.Control type="number" onChange={sessionHandler} value={mins} min={min} max={max} step={step} style={{ backgroundColor: theme.session.inputBg }} className="border-secondary" />
+        <Form.Control type="number" onChange={sessionHandler} value={mins} min={min} max={max} step={step} style={{ backgroundColor: theme.session.inputBg, fontSize: '0.8rem' }} className="border-secondary" id="session-deincrement-length" />
         <InputGroup.Append>
-          <InputGroup.Text style={{ backgroundColor: `${bgColor}` }} className="border-secondary text-dark">Session</InputGroup.Text>
+          <InputGroup.Text style={{ backgroundColor: `${bgColor}`, fontSize: '0.8rem' }} className="border-secondary text-dark" id="session-label">Session</InputGroup.Text>
         </InputGroup.Append>
       </InputGroup>
-      <div className={`${inputError} text-danger mt-1 ml-2 text-left`}>1 - 1440 mins (24h)</div>
+      <div className={`${inputError} text-dark mt-1 ml-2 text-left`} style={{ fontSize: '0.8rem' }}>1 - 1440 mins (24h)</div>
     </div>
   );
 };
